@@ -78,19 +78,27 @@ public class MainActivity extends AppCompatActivity {
 
                 StringBuilder exception = new StringBuilder();
 
-                if((Nome.isEmpty()){
+                if(Nome.isEmpty()){
                     exception.append("O campo de nome está vazio, é obrigatório informar um nome. \n");
                 }
 
-                if((Email.contains("@"))){
+
+
+                if(Email.isEmpty()) {
+                    exception.append("O campo email está vazio");
+                }if((Email.contains("@"))){
                     if(Email.indexOf("@") > 3){
-                        exception.append("E-mail inválido. \n");
+                        exception.append("E-mail inválido ou vazio. \n");
                     }
                 }
 
-                int idade;
+
+                int idade = 0;
                 try {
                     idade = Integer.parseInt(strIdade);
+                    if(strIdade.isEmpty()){
+                        exception.append("O campo idade está vazio");
+                    }
                     if (idade <= 0) {
                         exception.append("A idade precisa ser um número positivo.\n");
                     }
@@ -98,11 +106,17 @@ public class MainActivity extends AppCompatActivity {
                     exception.append("A idade precisa ser um número.\n");
                 }
 
-                double nota1;
-                double nota2;
+                double nota1 = 0;
+                double nota2 = 0;
                 try {
                     nota1 = Double.parseDouble(strNota1bi);
                     nota2 = Double.parseDouble(strNota2bi);
+                    if(strNota1bi.isEmpty()){
+                        exception.append("O campo de notas do 1 bimestre está vazio");
+                    }
+                    if(strNota2bi.isEmpty()){
+                        exception.append("O campo de notas do 2 bimestre está vazio");
+                    }
                     if (nota1 < 0 || nota1 > 10) {
                         exception.append("A nota 1 precisa ser um número entre 0 e 10.\n");
                     }
